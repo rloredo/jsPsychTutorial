@@ -49,14 +49,14 @@ var page_2_options = ["Primario en curso/completo", "Secundario en curso/complet
 //Creamos una pantalla con dos preguntas: edad y sexo
 var demograficos_1 = {
     type: 'survey-multi-choice',
-    questions: [{prompt: page_1_questions[0], options: page_1_options_1, required:true,}, {prompt: page_1_questions[1], options: page_1_options_2, required: true}],
+    questions: [{prompt: page_1_questions[0], options: page_1_options_1, required:true}, {prompt: page_1_questions[1], options: page_1_options_2, required: true}],
     button_label: "Siguiente"
     };
 
 //Creamos otra pantalla con una sola pregunta: educación
 var demograficos_2 = {
     type: 'survey-multi-choice',
-    questions: [{prompt: page_2_questions, options: page_2_options, required:true,}],
+    questions: [{prompt: page_2_questions, options: page_2_options, required:true}],
     button_label: "Siguiente"
   };
 
@@ -139,6 +139,7 @@ timeline.push(blanca, fijacion, palabra1, blanca, fijacion, palabra3, blanca, fi
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    message_progress_bar: 'Barra progreso',
     on_finish: function(){
     jsPsych.data.displayData();
     }

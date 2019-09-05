@@ -206,6 +206,7 @@ filename = subject_id + '_lista_' + rndmN + '.csv';
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    message_progress_bar: 'Barra progreso',
     on_finish: function(){
     jsPsych.data.get().localSave('csv',filename);
     }

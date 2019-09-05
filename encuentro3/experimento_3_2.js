@@ -200,11 +200,45 @@ var exp_procedure2 = {
 //Puheamos a la timeline principal
 timeline.push(exp_procedure1, descanso, exp_procedure2);
 
+//Definimos nombre de archivo
+filename = subject_id + '_lista_' + rndmN + '.csv';
+
+
+//Definimos funcion saveData
+function saveData(filename, filedata){
+   $.ajax({
+      type:'post',
+      cache: false,
+      url: 'save_data.php', // Esta es la ruta al PHP script. Cambiar si es necesario.
+      data: {filename: filename, filedata: filedata}
+   });}
+
+
+//Guardar datos
+var callSave= {
+    type: 'call-function',
+    func: function(){
+                      saveData(filename, jsPsych.data.get().csv());
+    }
+};
+
+timeline.push(callSave);
+
+// Pantalla fin experimento
+var finExp = {
+    type: 'html-keyboard-response',
+    stimulus: 'Gracias por completar el experimento. Cierre el navegador para salir.',
+    choices: jsPsych.NO_KEYS
+};
+
+timeline.push(finExp);
+
+
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
     message_progress_bar: 'Barra progreso',
     on_finish: function(){
-    jsPsych.data.displayData();
+
     }
 });

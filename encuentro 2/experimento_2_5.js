@@ -148,7 +148,8 @@ var estimulos1 = [
 ];
 
 //Elegimos un número al azar entre 0 y 1
-rndmN = jsPsych.randomization.shuffle([0,1])[0];
+var rndmN = jsPsych.randomization.shuffle([0,1])[0];
+
 if(rndmN == 1){
   var estimulos = estimulos1;
 } else {
@@ -187,9 +188,13 @@ var exp_procedure = {
 //Puheamos a la timeline principal
 timeline.push(exp_procedure);
 
+timeline = [exp_procedure];
+
+
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    message_progress_bar: 'Barra progreso',
     on_finish: function(){
     jsPsych.data.displayData();
     }

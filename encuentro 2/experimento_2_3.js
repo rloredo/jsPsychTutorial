@@ -1,5 +1,5 @@
 // Experimento 2 procedimiento
-
+console.log('Primer console log')
 //Funcion tagear respuesta
 var isCorrect = function(trial_data){
   rv = 'False'; //Definimos el resultado inicial como falso
@@ -16,6 +16,7 @@ var isCorrect = function(trial_data){
 
 //Generamos id de sujeto
 var subject_id = jsPsych.randomization.randomID(8);
+console.log(subject_id + '_M_' + '.csv')
 //Agregamos a todos los trial el id
 jsPsych.data.addProperties({sujeto: subject_id});
 
@@ -69,6 +70,7 @@ var demograficos_2 = {
     questions: [{prompt: page_2_questions, options: page_2_options, required:true,}],
     button_label: "Siguiente",
     on_finish: function (trial_data){
+      console.log(trial_data)
       var respuestas = JSON.parse(trial_data.responses);
       jsPsych.data.addProperties({
              educacion: respuestas.Q0});
@@ -96,6 +98,7 @@ timeline.push(instrucciones);
      on_finish: function(trial_data){
        //Agregamos un campo en data que se llama correct y el valor es el resultado de la función
        trial_data.correct = isCorrect(trial_data);
+       console.log('prueba is correct' + isCorrect(trial_data))
      }
  };
 
@@ -154,6 +157,7 @@ timeline.push(blanca, fijacion, palabra1, blanca, fijacion, palabra3, blanca, fi
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    message_progress_bar: 'Barra progreso',
     on_finish: function(){
     jsPsych.data.displayData();
     }

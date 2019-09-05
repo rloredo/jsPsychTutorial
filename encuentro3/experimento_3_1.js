@@ -200,11 +200,34 @@ var exp_procedure2 = {
 //Puheamos a la timeline principal
 timeline.push(exp_procedure1, descanso, exp_procedure2);
 
+//Definimos nombre de archivo
+filename = subject_id + '_lista_' + rndmN + '.csv';
+
+//Guardar datos
+var saveData= {
+    type: 'call-function',
+    func: function(){
+                      jsPsych.data.get().localSave('csv',filename);
+    }
+};
+
+timeline.push(saveData);
+
+// Pantalla fin experimento
+var finExp = {
+    type: 'html-keyboard-response',
+    stimulus: 'Gracias por completar el experimento. Cierre el navegador para salir.',
+    choices: jsPsych.NO_KEYS
+};
+
+timeline.push(finExp);
+
+
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
     message_progress_bar: 'Barra progreso',
     on_finish: function(){
-    jsPsych.data.displayData();
+
     }
 });

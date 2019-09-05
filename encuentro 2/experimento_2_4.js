@@ -148,6 +148,7 @@ timeline.push(exp_procedure);
 jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    message_progress_bar: 'Barra progreso',
     on_finish: function(){
     jsPsych.data.displayData();
     }
